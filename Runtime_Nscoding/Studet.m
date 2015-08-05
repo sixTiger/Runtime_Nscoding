@@ -49,4 +49,25 @@
 {
     NSLog(@"我是-----test2 %@ %@",NSStringFromSelector(_cmd),string);
 }
+- (NSString *)description
+{
+    NSMutableString *string = [NSMutableString stringWithFormat:@"<%@: %p>\n{",[self class],self];
+    Class c = self.class;
+    // 截取类和父类的成员变量
+    while (c && c != [NSObject class])
+    {
+        unsigned int count = 0;
+        Ivar *ivars = class_copyIvarList(c, &count);
+        for (int i = 0; i < count; i++)
+        {
+            NSString *key = [NSString stringWithUTF8String:ivar_getName(ivars[i])];
+            [string appendFormat:@"\n%@:%@ ",key,[self valueForKeyPath:key]];
+        }
+        // 获得c的父类
+        c = [c superclass];
+        free(ivars);
+    }
+    [string appendFormat:@"\n}"];
+    return string;
+}
 @end

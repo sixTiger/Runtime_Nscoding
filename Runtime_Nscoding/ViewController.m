@@ -25,6 +25,7 @@
     Studet *stu = [[Studet alloc]init];
     stu.name = @"name";
     stu.age = 12;
+    [stu setValue:@(14) forKeyPath:@"age"];
     stu.studyAge = @"一年级";
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     //将对象归档
@@ -32,8 +33,7 @@
     [NSKeyedArchiver archiveRootObject:stu toFile:path];
     //将对象解档
     Studet *stu2 = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-    NSLog(@"%@",stu2);
-    
+    NSLog(@"*******%@",stu2);
     
     Person *person = [[Person alloc] init];
     person.bookName = @"book";

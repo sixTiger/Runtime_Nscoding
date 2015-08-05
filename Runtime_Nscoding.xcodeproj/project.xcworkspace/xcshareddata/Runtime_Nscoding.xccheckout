@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>5AAAA65F-7DE3-4E41-8444-0B12A0263827</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Runtime_Nscoding</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>4265C65D0FCE8430D3904EBD83B901D068BA3337</key>
 		<string>https://github.com/sixTiger/Runtime_Nscoding.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Runtime_Nscoding.xcodeproj/project.xcworkspace</string>
+	<string>Runtime_Nscoding.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>4265C65D0FCE8430D3904EBD83B901D068BA3337</key>
