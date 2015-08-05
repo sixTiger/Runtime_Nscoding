@@ -15,6 +15,8 @@
 		628CF6261B719645005A8750 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 628CF6241B719645005A8750 /* LaunchScreen.xib */; };
 		628CF6321B719645005A8750 /* Runtime_NscodingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 628CF6311B719645005A8750 /* Runtime_NscodingTests.m */; };
 		628CF63D1B7196BA005A8750 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 628CF63C1B7196BA005A8750 /* Person.m */; };
+		628CF6401B71980E005A8750 /* Studet.m in Sources */ = {isa = PBXBuildFile; fileRef = 628CF63F1B71980E005A8750 /* Studet.m */; };
+		628CF67E1B71D6B4005A8750 /* Person+More.m in Sources */ = {isa = PBXBuildFile; fileRef = 628CF67D1B71D6B4005A8750 /* Person+More.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,10 @@
 		628CF6311B719645005A8750 /* Runtime_NscodingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Runtime_NscodingTests.m; sourceTree = "<group>"; };
 		628CF63B1B7196BA005A8750 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		628CF63C1B7196BA005A8750 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		628CF63E1B71980D005A8750 /* Studet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Studet.h; sourceTree = "<group>"; };
+		628CF63F1B71980E005A8750 /* Studet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Studet.m; sourceTree = "<group>"; };
+		628CF67C1B71D6B4005A8750 /* Person+More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Person+More.h"; sourceTree = "<group>"; };
+		628CF67D1B71D6B4005A8750 /* Person+More.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Person+More.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,10 @@
 				628CF6151B719645005A8750 /* Supporting Files */,
 				628CF63B1B7196BA005A8750 /* Person.h */,
 				628CF63C1B7196BA005A8750 /* Person.m */,
+				628CF63E1B71980D005A8750 /* Studet.h */,
+				628CF63F1B71980E005A8750 /* Studet.m */,
+				628CF67C1B71D6B4005A8750 /* Person+More.h */,
+				628CF67D1B71D6B4005A8750 /* Person+More.m */,
 			);
 			path = Runtime_Nscoding;
 			sourceTree = "<group>";
@@ -224,8 +234,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				628CF6401B71980E005A8750 /* Studet.m in Sources */,
 				628CF61E1B719645005A8750 /* ViewController.m in Sources */,
 				628CF61B1B719645005A8750 /* AppDelegate.m in Sources */,
+				628CF67E1B71D6B4005A8750 /* Person+More.m in Sources */,
 				628CF63D1B7196BA005A8750 /* Person.m in Sources */,
 				628CF6181B719645005A8750 /* main.m in Sources */,
 			);
