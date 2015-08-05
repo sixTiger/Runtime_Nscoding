@@ -8,7 +8,7 @@
 
 #import "Person.h"
 
-@interface Studet : Person
+@interface Student : Person
 /**
  *  年级
  */

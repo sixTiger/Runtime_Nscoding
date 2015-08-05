@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 杨小兵. All rights reserved.
 //
 
-#import "Studet.h"
+#import "Student.h"
 #import <objc/runtime.h>
 
-@implementation Studet
+@implementation Student
 + (void)load
 {
     // 获取类方法
@@ -51,7 +51,8 @@
 }
 - (NSString *)description
 {
-    NSMutableString *string = [NSMutableString stringWithFormat:@"<%@: %p>\n{",[self class],self];
+    
+    NSMutableString *string = [NSMutableString stringWithFormat:@"<%@: %p>{",[self class],self];
     Class c = self.class;
     // 截取类和父类的成员变量
     while (c && c != [NSObject class])
@@ -69,5 +70,50 @@
     }
     [string appendFormat:@"\n}"];
     return string;
+}
+
+
+
+#pragma mark- 动态的添加了一个方法
+
+/**
+ *  动态的添加的方法
+ *
+ */
+void  newFunction1(__strong id self, SEL _cmd){
+    NSLog(@"%@  是动态添加的方法", [self name]);
+}
+void  newFunction2(__strong id self, SEL _cmd ,NSString *conten){
+    NSLog(@"%@  是动态添加的方法,参数是 %@", [self name],conten);
+}
+//动态添加方法：在resolve中添加相应的方法，注意是类方法还是对象方法。
++ (BOOL)resolveInstanceMethod:(SEL)sel
+{
+    if ([NSStringFromSelector(sel) isEqualToString:@"newFunction1"])
+    {
+        class_addMethod(self, sel, (IMP)newFunction1, "v@:"); // 为sel指定实现为newFunction1
+        return NO;
+    }
+    if ([NSStringFromSelector(sel) isEqualToString:@"newFunction2:"])
+    {
+        class_addMethod(self, sel, (IMP)newFunction2, "v@:@"); // 为sel指定实现为newFunction2
+        return NO;
+    }
+    return NO;
+}
+
+
+#pragma mark - 类方法
+void  newFunction(__strong id self, SEL _cmd){
+    NSLog(@"%@  是动态添加的方法#########################", [self class]);
+}
++ (BOOL)resolveClassMethod:(SEL)sel
+{
+    if ([NSStringFromSelector(sel) isEqualToString:@"newFunction"])
+    {
+        class_addMethod(self, sel, (IMP)newFunction, "v@:"); // 为sel指定实现为newFunction
+        return YES;
+    }
+    return YES;
 }
 @end
