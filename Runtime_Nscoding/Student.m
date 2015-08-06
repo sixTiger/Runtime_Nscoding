@@ -7,7 +7,13 @@
 //
 
 #import "Student.h"
+#import "Helper.h"
 #import <objc/runtime.h>
+
+@interface Student ()
+
+@property(nonatomic , strong)Helper *helper;
+@end
 
 @implementation Student
 + (void)load
@@ -27,6 +33,7 @@
     {
         [self test1:@"test1"];
         [self test2:@"test2"];
+        _helper = [[Helper alloc] init];
     }
     return self;
 }
@@ -51,6 +58,9 @@
 }
 - (NSString *)description
 {
+    
+    [self performSelector:@selector(helperTest)];
+    
     
     NSMutableString *string = [NSMutableString stringWithFormat:@"<%@: %p>{",[self class],self];
     Class c = self.class;
@@ -92,14 +102,12 @@ void  newFunction2(__strong id self, SEL _cmd ,NSString *conten){
     if ([NSStringFromSelector(sel) isEqualToString:@"newFunction1"])
     {
         class_addMethod(self, sel, (IMP)newFunction1, "v@:"); // 为sel指定实现为newFunction1
-        return NO;
     }
     if ([NSStringFromSelector(sel) isEqualToString:@"newFunction2:"])
     {
         class_addMethod(self, sel, (IMP)newFunction2, "v@:@"); // 为sel指定实现为newFunction2
-        return NO;
     }
-    return NO;
+    return [super resolveClassMethod:sel];
 }
 
 
@@ -112,8 +120,30 @@ void  newFunction(__strong id self, SEL _cmd){
     if ([NSStringFromSelector(sel) isEqualToString:@"newFunction"])
     {
         class_addMethod(self, sel, (IMP)newFunction, "v@:"); // 为sel指定实现为newFunction
-        return YES;
     }
-    return YES;
+    return [super resolveClassMethod:sel];
+}
+
+
+#pragma mark - 消息发送
+
+
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+    
+    
+    NSString *selectorString = NSStringFromSelector(aSelector);
+    
+    // 将消息转发给_helper来处理 <前提是本类中没有响应的方法的实现>
+    if ([selectorString isEqualToString:@"helperTest"]) {
+        return _helper;
+    }
+    return [super forwardingTargetForSelector:aSelector];
+}
+- (void)forwardInvocation:(NSInvocation *)anInvocation
+{
+    SEL selector = [anInvocation selector];
+    if ([self.helper respondsToSelector:selector]) {
+        [anInvocation invokeWithTarget:self.helper];
+    }
 }
 @end

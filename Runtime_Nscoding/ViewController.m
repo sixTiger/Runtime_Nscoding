@@ -102,6 +102,9 @@ static void printSchool(id temp, SEL _cmd) {
  */
 - (void)test3
 {
+    [Student test1:@"test1"];
+    [Student test2:@"test2"];
+
     [Student respondsToSelector:@selector(newFunction)];
     Student * student = [[Student alloc] init];
     

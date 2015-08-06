@@ -13,6 +13,8 @@
  *  年级
  */
 @property(nonatomic , copy)NSString *studyAge;
++ (void)test1:(NSString *)string;
++ (void)test2:(NSString *)string;
 - (void)test1:(NSString *)string;
 - (void)test2:(NSString *)string;
 @end
