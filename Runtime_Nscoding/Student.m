@@ -142,8 +142,26 @@ void  newFunction(__strong id self, SEL _cmd){
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
     SEL selector = [anInvocation selector];
-    if ([self.helper respondsToSelector:selector]) {
+    if ([self.helper respondsToSelector:selector])
+    {
         [anInvocation invokeWithTarget:self.helper];
     }
 }
+
+
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+{
+    NSMethodSignature *signature = [super methodSignatureForSelector:aSelector];
+    
+    if (!signature)
+    {
+        if ([Helper instancesRespondToSelector:aSelector]) {
+            signature = [Helper instanceMethodSignatureForSelector:aSelector];
+        }
+    }
+    
+    return signature;
+}
+
 @end
