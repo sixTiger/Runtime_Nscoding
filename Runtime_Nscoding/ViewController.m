@@ -22,7 +22,10 @@
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self test3];
+//    [self test1];
+//    [self test2];
+//    [self test3];
+    [self test4];
 }
 - (void)test1
 {
@@ -114,5 +117,11 @@ static void printSchool(id temp, SEL _cmd) {
     [student performSelector:@selector(newFunction2:) withObject:@"world"];
     NSLog(@"%@",student);
     
+}
+
+- (void)test4 {
+    Student * student = [[Student alloc] init];
+    student.name = @"test3";
+    NSLog(@"%@",[student toDictionary]);
 }
 @end

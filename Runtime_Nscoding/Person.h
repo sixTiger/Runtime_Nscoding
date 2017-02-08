@@ -12,4 +12,5 @@
 
 @property(nonatomic , copy)NSString *name;
 @property(nonatomic , assign)NSInteger age;
+- (NSDictionary *)toDictionary;
 @end

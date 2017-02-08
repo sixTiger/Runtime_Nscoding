@@ -13,6 +13,8 @@
  *  年级
  */
 @property(nonatomic , copy)NSString *studyAge;
+@property(nonatomic ,assign) NSInteger  realAge;
+@property(nonatomic ,strong) NSString   *realName;
 + (void)test1:(NSString *)string;
 + (void)test2:(NSString *)string;
 - (void)test1:(NSString *)string;
