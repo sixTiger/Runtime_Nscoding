@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "Student.h"
 #import "Person+More.h"
+#import "XXBClassA.h"
+#import "XXBClassB.h"
 #import <objc/runtime.h>
 
 @interface ViewController ()
@@ -25,7 +27,8 @@
 //    [self test1];
 //    [self test2];
 //    [self test3];
-    [self test4];
+//    [self test4];
+    [self test5];
 }
 - (void)test1
 {
@@ -123,5 +126,10 @@ static void printSchool(id temp, SEL _cmd) {
     Student * student = [[Student alloc] init];
     student.name = @"test3";
     NSLog(@"%@",[student toDictionary]);
+}
+
+- (void)test5 {
+    XXBClassA *classA = [XXBClassA new];
+    [classA test];
 }
 @end
