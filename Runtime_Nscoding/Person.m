@@ -10,6 +10,11 @@
 #import <objc/runtime.h>
 
 @implementation Person
+
++ (void)test1:(NSString *)string {
+    NSLog(@"XXB | %s [Line %d] %@",__func__,__LINE__,[NSThread currentThread]);
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     
@@ -88,4 +93,13 @@
     }
     return dictionaryFormat;
 }
+
+- (void)test3:(NSString *)string {
+    NSLog(@"XXB | %s [Line %d] %@",__func__,__LINE__,[NSThread currentThread]);
+}
+
+- (void)test4:(NSString *)string {
+    NSLog(@"XXB | %s [Line %d] %@",__func__,__LINE__,[NSThread currentThread]);
+}
+
 @end

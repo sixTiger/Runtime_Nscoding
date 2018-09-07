@@ -19,4 +19,6 @@
 + (void)test2:(NSString *)string;
 - (void)test1:(NSString *)string;
 - (void)test2:(NSString *)string;
+- (void)test3:(NSString *)string;
+- (void)test4:(NSString *)string;
 @end

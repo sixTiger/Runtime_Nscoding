@@ -18,14 +18,40 @@
 @implementation Student
 + (void)load
 {
+    Class class = [self class];
+    
     // 获取类方法
-    Method m1 = class_getClassMethod([self class], @selector(test1:));
-    Method m2 = class_getClassMethod([self class], @selector(test2:));
+    Method m1 = class_getClassMethod(class, @selector(test1:));
+    Method m2 = class_getClassMethod(class, @selector(test2:));
     method_exchangeImplementations(m1, m2);
-    //获取对象方法
-    Method m3 = class_getInstanceMethod([self class], @selector(test1:));
-    Method m4 = class_getInstanceMethod([self class], @selector(test2:));
+    
+    Method m3 = class_getInstanceMethod(class, @selector(test1:));
+    Method m4 = class_getInstanceMethod(class, @selector(test2:));
     method_exchangeImplementations(m3, m4);
+    
+    
+    SEL originalSelector = @selector(test3:);
+    SEL swizzledSelector = @selector(test4:);
+    Method originalMethod = class_getInstanceMethod(class, originalSelector);
+    Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+
+    
+    //获取对象方法 如果对应的方法在父类中实现的话可以添加成功，如果只在当前类实现的话直接交换就行了
+    BOOL didAddMethod =
+    class_addMethod(class,
+                    originalSelector,
+                    method_getImplementation(swizzledMethod),
+                    method_getTypeEncoding(swizzledMethod));
+    
+    if (didAddMethod) {
+        //当前的类没有实现对应的方法，会添加成功《test3方法在父类中实现的话会走到这里》
+        class_replaceMethod(class,
+                            swizzledSelector,
+                            method_getImplementation(originalMethod),
+                            method_getTypeEncoding(originalMethod));
+    } else {
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
 }
 - (instancetype)init
 {
@@ -56,6 +82,16 @@
 {
     NSLog(@"我是-----test2 %@ %@",NSStringFromSelector(_cmd),string);
 }
+
+
+- (void)test3:(NSString *)string {
+    NSLog(@"XXB | %s [Line %d] %@",__func__,__LINE__,[NSThread currentThread]);
+}
+
+- (void)test4:(NSString *)string {
+    NSLog(@"XXB | %s [Line %d] %@",__func__,__LINE__,[NSThread currentThread]);
+}
+
 - (NSString *)description
 {
     
