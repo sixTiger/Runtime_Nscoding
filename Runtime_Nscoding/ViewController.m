@@ -24,10 +24,10 @@
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    [self test1];
-//    [self test2];
-//    [self test3];
-//    [self test4];
+    [self test1];
+    [self test2];
+    [self test3];
+    [self test4];
     [self test5];
 }
 - (void)test1
@@ -108,6 +108,9 @@ static void printSchool(id temp, SEL _cmd) {
  */
 - (void)test3
 {
+    [Person test1:@"test1"];
+    [[Person new] test3:@"test3"];
+    
     [Student test1:@"test1"];
     [Student test2:@"test2"];
 

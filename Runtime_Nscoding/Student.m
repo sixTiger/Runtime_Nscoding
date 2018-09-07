@@ -23,18 +23,19 @@
     // 获取类方法
     Method m1 = class_getClassMethod(class, @selector(test1:));
     Method m2 = class_getClassMethod(class, @selector(test2:));
+    //直接交换两个方法的实现，如果test1 在父类中实现， test2 在子类中实现，
+    //这样会直到时父类中调用test1 方法的时候直接变成调用子类的test2 方法
     method_exchangeImplementations(m1, m2);
-    
+    //获取对象方法
     Method m3 = class_getInstanceMethod(class, @selector(test1:));
     Method m4 = class_getInstanceMethod(class, @selector(test2:));
     method_exchangeImplementations(m3, m4);
     
-    
+    //正确的交换方法的实现《这样不会影响父类的相关方法，只影响当前的类》
     SEL originalSelector = @selector(test3:);
     SEL swizzledSelector = @selector(test4:);
     Method originalMethod = class_getInstanceMethod(class, originalSelector);
     Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-
     
     //获取对象方法 如果对应的方法在父类中实现的话可以添加成功，如果只在当前类实现的话直接交换就行了
     BOOL didAddMethod =
@@ -63,11 +64,7 @@
     }
     return self;
 }
-+ (void)test1:(NSString *)string
-{
-    
-    NSLog(@"我是+++++test1 %@ %@",NSStringFromSelector(_cmd),string);
-}
+
 + (void)test2:(NSString *)string
 {
     NSLog(@"我是-----test2 %@ %@",NSStringFromSelector(_cmd),string);

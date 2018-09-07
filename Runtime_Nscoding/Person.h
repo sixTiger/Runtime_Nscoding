@@ -14,6 +14,8 @@
 @property(nonatomic , assign)NSInteger age;
 - (NSDictionary *)toDictionary;
 
++ (void)test1:(NSString *)string;
+
 - (void)test1:(NSString *)string;
 
 - (void)test3:(NSString *)string;

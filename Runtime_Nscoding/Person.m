@@ -94,6 +94,10 @@
     return dictionaryFormat;
 }
 
+- (void)test1:(NSString *)string {
+    NSLog(@"XXB | %s [Line %d] %@",__func__,__LINE__,[NSThread currentThread]);
+}
+
 - (void)test3:(NSString *)string {
     NSLog(@"XXB | %s [Line %d] %@",__func__,__LINE__,[NSThread currentThread]);
 }
